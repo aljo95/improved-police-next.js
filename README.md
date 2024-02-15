@@ -1,0 +1,1 @@
+Improving search functionality of swedish police's incident reports page by using their API (https://polisen.se/api/events)
