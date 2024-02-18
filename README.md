@@ -4,7 +4,7 @@ The original police site only lets you chose a location in Sweden even though th
 - [x] select location query
 - [x] select time query
 Todo:
-- [] select one or more types of incidents
-- [] finish tailwind styling
-- [] store all in DB because polisen removes incidents from API after some time?
+- [ ] select one or more types of incidents
+- [ ] finish tailwind styling
+- [ ] store all in DB because polisen removes incidents from API after some time?
 
