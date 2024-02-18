@@ -1,29 +1,96 @@
 'use client';
 
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-async function getIncidents() {
-  const res = await fetch("https://polisen.se/api/events", {cache: "no-store"});
-  const incidents = await res.json();
-  return incidents;
-}
+interface IProps {
+  fetchQuery: string,
+  setFetchQuery: Function,
+  /*
+  startTime: Date | undefined,
+  setStartTime: Function,
+  endTime: Date | undefined,
+  setEndTime: Function,
+  */
 
-const FilteringOptions: FC = (): JSX.Element => {
+}
+        //{ fetchQuery, setFetchQuery }
+const FilteringOptions: FC<IProps> = ( props: IProps ): JSX.Element => {
 
     const [region, setRegion] = useState<string>("");
-    const [startTime, setStartTime] = useState<Date>();
-    const [endTime, setEndTime] = useState<Date>();
     const [showCheckboxes, setShowCheckboxes] = useState<boolean>(false);
-    
+
+    const [location, setLocation] = useState<string>("");
+
+    const [startTime, setStartTime] = useState<Date | null | undefined>();
+    const [timeQuery, setTimeQuery] = useState<string | undefined>("");
+
+
+
+    /*  REGION INPUT AND QUERY STRING CONCAT   */
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      
+      setRegion(e.target.value)
+      if (e.target.value === "Hela Sverige" || e.target.value === "") {
+        setLocation("");
+        return;
+      }
+      let opts: any = document.getElementById('regions')?.children;
+      for (let i=0; i<opts?.length; i++) {
+        if(opts[i].value === e.target.value) {
+
+          //let
+          const locationQuery = "locationname=" + opts[i].value;
+
+          setLocation(locationQuery);
+          // alert(opts[i].value);
+          break;
+        }
+      }
+    }
+
+
+    /*  When any of the query states change we update fetchQuery!  */
+    useEffect(() => {
+
+
+      if (location !== "" && timeQuery !== "") {
+        props.setFetchQuery("?" + location + "&" + timeQuery);
+      } else if (location !== "") {
+        props.setFetchQuery("?"+location);
+      } else {
+        props.setFetchQuery("?"+timeQuery);
+      }
+      
+
+
+    }, [location, timeQuery/*, showCheckboxes */])
+
+
+    useEffect(() => {
+      
+      //console.log((startTime?.toLocaleDateString('sv-SE'))?.slice(0, 7));
+      if (startTime === undefined) return;
+      
+      const timeQueryString: string | undefined = "DateTime=" + (startTime?.toLocaleDateString('sv-SE'))?.slice(0, 7);
+      setTimeQuery(timeQueryString);
+
+
+    }, [startTime])
+
+
+
+
 
   return (
     <>
         <label>Region: 
-            <input list="regions" name="myBrowser" value={region} onChange={(e) => setRegion(e.target.value)}/>
+            <input list="regions" name="myBrowser" value={region} onChange={handleChange} placeholder='Hela Sverige'/>
         </label>
-        <datalist id="regions">    { /* this list can be SSR, just pass state as prop? */ }
+        <datalist id="regions" onSelect={() => console.log("HELLO")}>
+            { /* this list can be SSR, just pass state as prop? */ }
+            <option value="Hela Sverige">Hela Sverige</option>
             <option value="Ale">Ale</option>
             <option value="Alingsås">Alingsås</option>
             <option value="Älmhult">Älmhult</option>
@@ -336,19 +403,20 @@ const FilteringOptions: FC = (): JSX.Element => {
             <option value="Ydre">Ydre</option>
         </datalist>
 
+      
+        <div id="date-container">
+          Show from month: 
+          <DatePicker selected={startTime} onChange={(date : Date) => setStartTime(date)} showMonthYearPicker dateFormat="yyyy-MM"/>
+        </div>
+
+
         <div id="crime-type" onClick={() => setShowCheckboxes(!showCheckboxes)}>
           Types
           { /* conditional render för att öppna en meny med checkboxes och välj dom som man vill se */ }
         {showCheckboxes ? <div>helo</div> : <></>}
         </div>
+        
 
-
-        <div id="date-container">
-          From: 
-          <DatePicker selected={startTime} onChange={(date: any) => setStartTime(date)} />
-          To:
-          <DatePicker selected={endTime} onChange={(date: any) => setEndTime(date)} />
-        </div>
     </>
   )
 }
