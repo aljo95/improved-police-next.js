@@ -1,15 +1,14 @@
 
-interface Product {
+interface Type {
     typeOfCrime: string;
 }
 
-interface ProductCollection {
-    products: Product[];
+interface TypeCollection {
+    types: Type[];
 }
 
-
-export const typesOfIncidents: ProductCollection = {
-    products: [
+export const typesOfIncidents: TypeCollection = {
+    types: [
         {
             typeOfCrime: "Misshandel"
         },
@@ -18,4 +17,3 @@ export const typesOfIncidents: ProductCollection = {
         }
     ]   /* adding more soon */
 }
-
