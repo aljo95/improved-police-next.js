@@ -29,7 +29,7 @@ const TypeCheckboxes: FC<IProps> = (props: IProps):JSX.Element => {
                     checked={props.checkedState[index]}
                     onChange={() => handleChange(index)}
                     />
-                    <label htmlFor={`custom-checkbox-${index}`}>{element.typeOfCrime}</label>
+                    <label htmlFor={`custom-checkbox-${index}`}>{element.valueString}</label>
                 </div>
             )
         })}
