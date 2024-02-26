@@ -34,13 +34,13 @@ export const typesOfIncidents: TypeCollection = {
         },
         {
             typeOfCrime: "Larm överfall-Våldtäkt-Våldtäkt, försök",
-            valueString: "Överfall & Våldtäkt"
+            valueString: "Våldtäkt, Överfall"
         },
         {
             typeOfCrime: `Sammanfattning dag-Sammanfattning dygn-Sammanfattning eftermiddag
             -Sammanfattning förmiddag-Sammanfattning helg-Sammanfattning kväll-Sammanfattning kväll och natt
             -Sammanfattning natt-Sammanfattning vecka`,
-            valueString: "Sammanfattningar",
+            valueString: "Sammanfattning",
         },
         {
             typeOfCrime: `Alkohollagen-Anträffad död-Anträffat gods-Arbetsplatsolycka-Bedrägeri-Bombhot
