@@ -16,11 +16,10 @@ const TypeCheckboxes: FC<IProps> = (props: IProps):JSX.Element => {
     }
 
   return (
-    <div>
-        <p>testtest</p>
-        {typesOfIncidents.types.map((element: any, index: number):JSX.Element => {
+    <div className="grid grid-cols-2">
+        {typesOfIncidents.types.map((element: any, index: number): JSX.Element => {
             return (
-                <div id="checkboxes-container" key={index}>
+                <div id="checkboxes-container" key={index} className="flex">
                     <input
                     type="checkbox"
                     id={`custom-checkbox-${index}`}
@@ -29,7 +28,7 @@ const TypeCheckboxes: FC<IProps> = (props: IProps):JSX.Element => {
                     checked={props.checkedState[index]}
                     onChange={() => handleChange(index)}
                     />
-                    <label htmlFor={`custom-checkbox-${index}`}>{element.valueString}</label>
+                    <label htmlFor={`custom-checkbox-${index}`} className="my-auto mx-1 text-sm">{element.valueString}</label>
                 </div>
             )
         })}
