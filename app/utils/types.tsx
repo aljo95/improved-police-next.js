@@ -29,7 +29,7 @@ export const typesOfIncidents: TypeCollection = {
         },
         {
             typeOfCrime: `Trafikbrott-Trafikhinder-Trafikkontroll-Trafikolycka-Trafikolycka
-            , personskada-Trafikolycka, singel-Trafikolycka, smitning från-Trafikolycka, vilt`,
+            , personskada-Trafikolycka, singel-Trafikolycka, smitning från-Trafikolycka, vilt-Rattfylleri`,
             valueString: "Trafikbrott och olyckor",
         },
         {
@@ -49,7 +49,7 @@ export const typesOfIncidents: TypeCollection = {
             -Lagen om hundar och katter-Miljöbrott-Missbruk av urkund
             -Motorfordon, anträffat stulet-Motorfordon, stöld-Narkotikabrott-Naturkatastrof
             -Ofog barn/ungdom-Ofredande/förargelse-Olaga frihetsberövande-Olaga hot-Olaga intrång/hemfridsbrott
-            -Olovlig körning-Ordningslagen-Polisinsats/kommendering-Rattfylleri-Räddningsinsats-Sedlighetsbrott
+            -Olovlig körning-Ordningslagen-Polisinsats/kommendering-Räddningsinsats-Sedlighetsbrott
             -Sjukdom/olycksfall-Sjölagen-Skadegörelse-Skottlossning-Skottlossning, misstänkt-Spridning smittsamma kemikalier
             -Tillfälligt obemannat-Uppdatering-Utlänningslagen-Vapenlagen-Varningslarm/haveri-Våld/hot mot tjänsteman
             -Vållande till kroppsskada`,
