@@ -55,7 +55,7 @@ const FilteringOptions: FC<IProps> = ( props: IProps ): JSX.Element => {
       } else {
         props.setFetchQuery("?"+timeQuery);
       }
-    }, [locationQuery, timeQuery])
+    }, [locationQuery, timeQuery, props.fetchQuery])    // <-- props.fetcHQuerY
 
     useEffect(() => {
       if (startTime === undefined) return;
@@ -65,7 +65,7 @@ const FilteringOptions: FC<IProps> = ( props: IProps ): JSX.Element => {
 
     useEffect(() => {
       props.setCheckBoxFilters(checkedState);
-    }, [checkedState])
+    }, [checkedState, props.checkBoxFilters])           // <-- props.checkBoxFilters
 
     const datePickFunc = (date: Date):void => {
       setStartTime(date);
