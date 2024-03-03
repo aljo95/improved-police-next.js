@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
 }
@@ -19,4 +20,8 @@ h1, .we-oh, li, th {
 body {
   color: var(--foreground-rgb);
   padding: 1rem;
+}
+
+.customCSS {
+  font-weight: bold;
 }
