@@ -163,7 +163,8 @@ export default function Home() {
         if (newStr.slice(0, -4) === "<br>") newStr = newStr.slice(0, -4);
         if (newStr.includes("&nbsp;")) newStr = newStr.replace("&nbsp;", "");
         
-        contentElem.innerHTML = newStr;
+        if (contentElem !== null)
+          contentElem.innerHTML = newStr;
 
         if ((contentElem.innerHTML).includes("<br>") || contentElem.innerHTML === orgText) {
           let hrefStr: string = "https://polisen.se"+url;
