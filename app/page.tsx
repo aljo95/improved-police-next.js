@@ -166,7 +166,7 @@ export default function Home() {
         if (contentElem !== null)
           contentElem.innerHTML = newStr;
 
-        if ((contentElem.innerHTML).includes("<br>") || contentElem.innerHTML === orgText) {
+        if (((contentElem !== null) && (contentElem.innerHTML).includes("<br>")) || contentElem.innerHTML === orgText) {
           let hrefStr: string = "https://polisen.se"+url;
           contentElem.innerHTML += `
           </br><a href=${hrefStr} 
