@@ -130,7 +130,8 @@ export default function Home() {
 
         e.target.innerHTML = "Visa mindre";
 
-        contentElem.classList.add('animate-fadeOut');
+        if (contentElem !== null)
+          contentElem.classList.add('animate-fadeOut');
 
         let parser = new DOMParser();
         let doc = parser.parseFromString(data, "text/html");
