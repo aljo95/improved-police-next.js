@@ -62,7 +62,7 @@ export default function Home() {
     }
 
     for (let i=0; i<prevList.length; i++) {
-      if (shallowTypesArr.indexOf(prevList[i].type) !== -1) {   //typesFilter = ["Misshandel,Bråk", "Trafikbrott"]...
+      if (shallowTypesArr.indexOf(prevList[i].type) !== -1) { 
         //console.log(prevList[i].type)
         tempIncidents.push(prevList[i]);
       }
@@ -73,7 +73,7 @@ export default function Home() {
     } else {
       setListOfIncidents([]);
     }
-  }, [typesFilter, fetchQuery])
+  }, [typesFilter, fetchQuery, listOfIncidents, prevList])   // <--- listOfIncidents & prevList 
 
 
   const typesFilterIntoShallowArr = (): string[] => {
@@ -203,6 +203,10 @@ export default function Home() {
   } 
 
   return (
+
+
+
+
     <main id="main" className="border-primary border-4 flex justify-center items-center flex-col 
     w-full md:w-4/5 lg:w-3/5 2xl:w-2/5 m-auto bg-neutral-content relative z-10 pb-10 rounded-lg">
       <div id="info-container"
