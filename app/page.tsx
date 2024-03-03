@@ -166,15 +166,16 @@ export default function Home() {
         if (contentElem !== null)
           contentElem.innerHTML = newStr;
 
-        if (((contentElem !== null) && (contentElem.innerHTML).includes("<br>")) || contentElem.innerHTML === orgText) {
-          let hrefStr: string = "https://polisen.se"+url;
-          contentElem.innerHTML += `
-          </br><a href=${hrefStr} 
-          class="underline font-medium text-blue-100  mb-5 hover:text-blue-300 m-auto mt-5 visited:text-purple-200">
-          Se originalnotisen</a>
-          `
+        if (contentElem !== null) {
+          if ((contentElem.innerHTML).includes("<br>") || contentElem.innerHTML === orgText) {
+            let hrefStr: string = "https://polisen.se"+url;
+            contentElem.innerHTML += `
+            </br><a href=${hrefStr} 
+            class="underline font-medium text-blue-100  mb-5 hover:text-blue-300 m-auto mt-5 visited:text-purple-200">
+            Se originalnotisen</a>
+            `
+          } else contentElem.innerHTML = newStr;
         }
-        else contentElem.innerHTML = newStr;
 
         if (containerElem !== null)
           containerElem.scrollIntoView({ behavior: 'smooth' });
