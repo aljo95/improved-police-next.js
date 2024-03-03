@@ -16,10 +16,10 @@ const TypeCheckboxes: FC<IProps> = (props: IProps):JSX.Element => {
     }
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 w-full border border-dashed border-l-0 border-r-0 border-b-black pt-2 pb-2 mb-2  justify-items-center">
         {typesOfIncidents.types.map((element: any, index: number): JSX.Element => {
             return (
-                <div id="checkboxes-container" key={index} className="flex">
+                <div id="checkboxes-container" key={index} className="flex w-3/4 ">
                     <input
                     type="checkbox"
                     id={`custom-checkbox-${index}`}

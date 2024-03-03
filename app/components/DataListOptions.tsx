@@ -1,9 +1,8 @@
-//import React from 'react'
 
 const DataListOptions = () => {
   return (
-    <datalist id="regions">
-            <option value="Hela Sverige">Hela Sverige</option>
+    <datalist id="regions" className="bg-primary">
+            <option value="Hela Sverige" className="bg-primary">Hela Sverige</option>
             <option value="Ale">Ale</option>
             <option value="Alingsås">Alingsås</option>
             <option value="Älmhult">Älmhult</option>

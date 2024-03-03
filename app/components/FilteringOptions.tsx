@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { typesOfIncidents } from '../utils/types';
 import TypeCheckboxes from './TypeCheckboxes';
 import DataListOptions from './DataListOptions';
+import '../utils/datePicker.css'
 
 interface IProps {
   fetchQuery: string,
@@ -16,6 +17,7 @@ interface IProps {
 
 const FilteringOptions: FC<IProps> = ( props: IProps ): JSX.Element => {
 
+
     const [region, setRegion] = useState<string>("");
     const [showCheckboxes, setShowCheckboxes] = useState<boolean>(false);
     const [locationQuery, setLocationQuery] = useState<string>("");
@@ -25,6 +27,8 @@ const FilteringOptions: FC<IProps> = ( props: IProps ): JSX.Element => {
     const [checkedState, setCheckedState] = useState<boolean[]>(
       new Array(typesOfIncidents.types.length).fill(false)
     );
+
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       
@@ -90,28 +94,39 @@ const FilteringOptions: FC<IProps> = ( props: IProps ): JSX.Element => {
       }*/
     }
 
+    const focusOnInput = () => {
+      document.getElementById("inpt")?.focus();
+    }
+    // later feature - where <div onMouseOver={focusDatePicker}> <DatePicker /> </div> etc is used for "focusing"
+    const focusDatePicker = () => {
+      let ele: HTMLElement | null = document.getElementById("dp");
+      if (ele !== null)
+        ele.className = ele.className + " outline"
+    }
+
   return (
+    <div id="filter-container" className=" sm:w-3/5 lg:w-2/3 w-11/12 rounded-lg">
 
-    <div id="filter-container" className="border-2 w-1/2">
-
-      <div id="region-and-date-container" className="flex">
-        <div id ="region-container" className="h-50 p-2 flex flex-col justify-center bg-secondary w-3/5">
+      <div id="region-and-date-container" className="flex rounded-t-lg">
+        <div id ="region-container" className="h-50 p-2 flex flex-col justify-center bg-secondary w-3/5 rounded-tl-lg">
           <label className="mb-2 text-white">Kommun eller Län</label>
-          <input list="regions" name="myBrowser" value={region} onChange={handleChange} placeholder='Hela Sverige'
-              className="w-full mb-2 p-1 pl-2 pr-2"/>
-          <DataListOptions />
+          <input id="inpt" list="regions" name="myBrowser" value={region} onChange={handleChange} placeholder='Hela Sverige'
+           className="w-full mb-2 p-1 pl-2 pr-2" onMouseOver={focusOnInput}/>
+            <DataListOptions />
         </div>
         
-        <div id="date-container" className="h-50 p-2 flex flex-col justify-center bg-secondary w-2/5">
+        <div id="date-container" className="h-50 p-2 flex flex-col justify-center bg-secondary w-2/5 rounded-tr-lg">
           <label className="mb-2 text-white">Månad</label>
-          <DatePicker locale={locale} selected={startTime} onChange={datePickFunc} showMonthYearPicker value={timeToText}
-          className="w-full mb-2 p-1 pl-2 pr-2"/>
+          <div>
+            <DatePicker id="dp" locale={locale} selected={startTime} onChange={datePickFunc} showMonthYearPicker value={timeToText}
+            onFocus={(e) => e.target.readOnly = true} placeholderText={'Välj månad'} className="w-full mb-2 p-1 pl-2 pr-2"/>
+          </div>
         </div>
       </div>
 
-      <button className="btn min-h-7 h-7 w-full bg-primary text-white" onClick={() => setShowCheckboxes(!showCheckboxes)}>
+      <button className="btn min-h-7 h-7 bg-primary w-full border-0 text-white rounded-b-lg" onClick={() => setShowCheckboxes(!showCheckboxes)}>
         Filtrera efter typ av händelse</button>
-      <div id="crime-type" className="w-full">
+      <div id="crime-type" className="">
         {showCheckboxes ? <TypeCheckboxes checkedState={checkedState} setCheckedState={setCheckedState} /> : <></>}
       </div>
     </div>
