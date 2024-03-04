@@ -9,7 +9,8 @@ import { GoInfo } from "react-icons/go";
 async function getIncidents(fetchQuery: string) {
   let apiString: string = "https://polisen.se/api/events/";
   apiString = apiString + fetchQuery;
-  const res = await fetch(apiString, {cache: "no-store"});
+  //const res = await fetch(apiString, {cache: "no-store"});
+  const res = await fetch(apiString);
   const incidents = await res.json()
   return incidents;
 }
