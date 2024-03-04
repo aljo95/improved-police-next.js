@@ -27,6 +27,7 @@ export default function Home() {
   const [checkBoxFilters, setCheckBoxFilters] = useState<boolean[]>([]);
   const [typesFilter, setTypesFilter] = useState<string[]>([]);
   const [toggleInfo, setToggleInfo] = useState<boolean>(false);
+  const [summaryTooLong, setSummaryTooLong] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function Home() {
   
 
   /* Kind of long function - refactor later */
-  const fetchInfo: any = async (e: any, url: any, indx: string) => {
+  const fetchInfo: any = async (e: any, url: string, summaryText: string, indx: string) => {
 
     let contentElem = document.getElementById(indx);
     let orgText = contentElem?.innerHTML; // Necessary or refactor?
@@ -134,8 +135,15 @@ export default function Home() {
         let doc = parser.parseFromString(data, "text/html");
         let targetElem = doc.querySelectorAll("p");
 
+        let i=1;
+        if (summaryText.length === 110) {
+          i=0;
+        }
 
-        for (let i=1; i<targetElem.length; i++) {
+
+        for (i; i<targetElem.length; i++) {
+          targetElem[i].innerHTML = (targetElem[i].innerHTML).replaceAll("\\r\\n", "")
+
           if (targetElem[i].innerHTML === "Kontakta polisen") {
             newStr += 
             `Har du information som kan kopplas till det inträffade?
@@ -183,10 +191,6 @@ export default function Home() {
     })
   }
 
-
-
-
-
   /* Toggle off info-text + smooth fade transitions */
   const handleWhenToggleIsTrue = (e: React.MouseEvent<Element, MouseEvent>) => {
     e.stopPropagation();
@@ -199,8 +203,30 @@ export default function Home() {
       setToggleInfo(false);
       con?.classList.remove("animate-fadeIn");
     }, 400)
-    //con?.classList.add("animate-fadeOut") - Not needed, added every time component mounts anyways?
+    //con?.classList.add("animate-fadeOut") - Not needed, added every time component mounts anyways
   } 
+
+
+  /* 
+    Because the Swedish police's API is _LITERALLY_BROKEN_ we must check the length of the 
+    summary string and change it if the length is 110 (cut off for their api...)
+  */
+  const checkInfoText = (currentText: string, currentName: string) : string => {
+    if (currentText.length === 110) {
+      let newStr: string;
+      if (currentText.includes(".")) {
+        newStr = currentText.slice(0, currentText.indexOf(".")+1);
+        return newStr;
+      }
+
+      let nameOnlySubstring = currentName.slice(
+        currentName.indexOf(", ")+1, currentName.lastIndexOf(", "));
+
+      console.log(nameOnlySubstring);
+      return nameOnlySubstring;
+      }
+    return currentText;
+  }
 
   return (
 
@@ -247,16 +273,21 @@ export default function Home() {
           
           <p className="text-sm w-11/12 text-center">{info.name}</p>
 
-          <p className="text-lg w-11/12 flex flex-col mt-2 customCSS text-center">{info.summary}</p>
+{/*
+          <p className="text-lg w-11/12 flex flex-col mt-2 customCSS text-center border border-black h-32"
+          onClick={() => console.log(listOfIncidents[index])}>{info.summary}</p>
+      */}
+          <p id="infoText" className="text-lg w-11/12 flex flex-col mt-2 customCSS text-center">
+            {checkInfoText(info.summary, info.name)}
+          </p>
 
-
-          <div className="text-lg w-11/12 text-start mb-4 flex flex-col" id={index.toString()}>
+          <div className="text-lg w-11/12 text-start mb-6 flex flex-col" id={index.toString()}>
             {/* innerHTML content goes here in function fetchInfo */}
           </div>
 
           <button className="btn w-full absolute right-0 bottom-0 min-h-5 h-5 bg-primary  text-white rounded-none 
           rounded-b-lg border-0 border-t border-slate-400 text-sm active:text-xs no-animation"
-          onClick={(e) => { fetchInfo(e, info.url, index.toString()); }}>Visa mer</button>
+          onClick={(e) => { fetchInfo(e, info.url, info.summary, index.toString()); }}>Visa mer</button>
         </div>
       ))}
 
