@@ -3,7 +3,7 @@ import React from 'react'
 const InfoText = () => {
   return (
     <div className="">
-        <p>This website was created with next.js using server-side rendering and serverless functions, and can be found at&nbsp;
+        <p>This page was created with next.js using server-side rendering and serverless functions, and can be found at&nbsp;
             <a href="https://github.com/aljo95/improved-police-next.js" 
             className="underline text-blue-100 hover:text-blue-300 visited:text-purple-200" target="_blank"> 
             GitHub
