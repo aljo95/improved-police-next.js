@@ -7,6 +7,5 @@ export async function POST(req: Request) {
     const res = await fetch(fullUrl)
     const data = await res.text();
 
-
     return Response.json({data});
 }
