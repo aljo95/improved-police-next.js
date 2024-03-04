@@ -121,7 +121,7 @@ export default function Home() {
     console.log(orgText)
     
     /* FETCHING HTML STARTS HERE - REST OF FUNCTION */ 
-    fetch('http://192.168.0.4:3000/api/HtmlPostFetch', {
+    fetch('/api/HtmlPostFetch', {
         method: 'POST',
         body: JSON.stringify({ url })
     })
