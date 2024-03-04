@@ -116,9 +116,6 @@ export default function Home() {
 
     let newStr: string = "";
     newStr = contentElem.innerHTML;
-
-    console.log(contentElem.innerHTML);
-    console.log(orgText)
     
     /* FETCHING HTML STARTS HERE - REST OF FUNCTION */ 
     fetch('/api/HtmlPostFetch', {
