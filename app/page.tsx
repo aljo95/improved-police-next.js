@@ -9,7 +9,6 @@ import { GoInfo } from "react-icons/go";
 async function getIncidents(fetchQuery: string) {
   let apiString: string = "https://polisen.se/api/events/";
   apiString = apiString + fetchQuery;
-  //const res = await fetch(apiString, {cache: "no-store"});
   const res = await fetch(apiString);
   const incidents = await res.json()
   return incidents;
@@ -28,11 +27,9 @@ export default function Home() {
   const [checkBoxFilters, setCheckBoxFilters] = useState<boolean[]>([]);
   const [typesFilter, setTypesFilter] = useState<string[]>([]);
   const [toggleInfo, setToggleInfo] = useState<boolean>(false);
-  const [summaryTooLong, setSummaryTooLong] = useState<boolean>(false);
 
 
   useEffect(() => {
-    //console.log("FETCH QUERY: " + fetchQuery);
     const incidents = getIncidents(fetchQuery);
     incidents.then(res => { 
       setListOfIncidents(res);
@@ -46,7 +43,6 @@ export default function Home() {
     let tempArr: string[] = [];
     for (let i=0; i<checkBoxFilters.length; i++) {
       if (checkBoxFilters[i] === true) {
-        //console.log(typesOfIncidents.types[i].typeOfCrime);
         tempArr.push(typesOfIncidents.types[i].typeOfCrime);
       }
     }
@@ -65,7 +61,6 @@ export default function Home() {
 
     for (let i=0; i<prevList.length; i++) {
       if (shallowTypesArr.indexOf(prevList[i].type) !== -1) { 
-        //console.log(prevList[i].type)
         tempIncidents.push(prevList[i]);
       }
     }
@@ -94,7 +89,7 @@ export default function Home() {
   const fetchInfo: any = async (e: any, url: string, summaryText: string, indx: string) => {
 
     let contentElem = document.getElementById(indx);
-    let orgText = contentElem?.innerHTML; // Necessary or refactor?
+    let orgText = contentElem?.innerHTML;
 
     if (contentElem === null) return;
 
@@ -149,7 +144,7 @@ export default function Home() {
             newStr += 
             `Har du information som kan kopplas till det inträffade?
              <a
-              class="underline font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              class="underline font-medium text-blue-100 hover:underline hover:text-blue-300"
               href="https://polisen.se/om-polisen/kontakt/tipsa-polisen/">Kontakta oss</a>
             `
             break;
@@ -162,8 +157,8 @@ export default function Home() {
 
         /* HANDLING ALL WEIRD/STUPID CASES BECAUSE SWEDISH POLICE CAN'T WRITE PROPERLY */ 
         newStr = newStr.replace('\\"tips\\"', '"tips"' );
-        newStr = newStr.replace("kontakta polisen", `<a
-        class="underline font-medium text-blue-100 dark:text-blue-500 hover:text-blue-300"
+        newStr = newStr.replace("kontakta polisen.", `<a
+        class="underline font-medium text-blue-100  hover:text-blue-300"
         href="https://polisen.se/om-polisen/kontakt/tipsa-polisen/">Kontakta Polisen</a>`)
         
         if (newStr.slice(0, -4) === "<br>") newStr = newStr.slice(0, -4);
@@ -267,11 +262,9 @@ export default function Home() {
       {listOfIncidents.map((info: any, index: number) => ( 
         
         <div key={index} id={(index+500).toString()} 
-        className="border flex flex-col justify-center items-center mt-5 pt-2 pb-2 
-        relative h-full animate-fadeOut bg-primary text-white rounded-lg w-11/12 sm:w-4/5"
-        
+          className="border flex flex-col justify-center items-center mt-5 pt-2 pb-2 
+          relative h-full animate-fadeOut bg-primary text-white rounded-lg w-11/12 sm:w-4/5"
         >
-          
           <p className="text-sm w-11/12 text-center">{info.name}</p>
 
 {/*
@@ -291,9 +284,6 @@ export default function Home() {
           onClick={(e) => { fetchInfo(e, info.url, info.summary, index.toString()); }}>Visa mer</button>
         </div>
       ))}
-
-
-
     </main>
   )
 }
