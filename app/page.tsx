@@ -162,7 +162,7 @@ export default function Home() {
         href="https://polisen.se/om-polisen/kontakt/tipsa-polisen/">Kontakta Polisen</a>`)
         
         if (newStr.slice(0, -4) === "<br>") newStr = newStr.slice(0, -4);
-        if (newStr.includes("&nbsp;")) newStr = newStr.replace("&nbsp;", "");
+        if (newStr.includes("&nbsp;")) newStr = newStr.replace("&nbsp;", " ");
         
         if (contentElem !== null)
           contentElem.innerHTML = newStr;
@@ -265,7 +265,7 @@ export default function Home() {
           className="border flex flex-col justify-center items-center mt-5 pt-2 pb-2 
           relative h-full animate-fadeOut bg-primary text-white rounded-lg w-11/12 sm:w-4/5"
         >
-          <p className="text-sm w-11/12 text-center">{info.name}</p>
+          <p className="text-sm w-11/12 text-center">{info.name}<br /></p>
 
 {/*
           <p className="text-lg w-11/12 flex flex-col mt-2 customCSS text-center border border-black h-32"
