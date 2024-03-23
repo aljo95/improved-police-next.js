@@ -230,7 +230,7 @@ export default function Home() {
 
 
     <main id="main" className="border-primary border-4 flex justify-center items-center flex-col 
-    w-full md:w-4/5 lg:w-3/5 2xl:w-2/5 m-auto bg-neutral-content relative z-10 pb-10 rounded-lg">
+    w-full md:w-5/5 md:h-5/5 lg:w-3/5 2xl:w-2/5 m-auto bg-neutral-content relative z-10 pb-10 rounded-lg">
       <div id="info-container"
       className="absolute top-0 right-0 z-20 w-8 h-8 mt-2 mr-2 rounded-full" >
         <button className="w-full h-full rounded-full"  onClick={() => setToggleInfo(true) }>
