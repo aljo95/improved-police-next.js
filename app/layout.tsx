@@ -17,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="nord" className="bg-base-100">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
