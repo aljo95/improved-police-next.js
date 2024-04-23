@@ -11,7 +11,9 @@ Also scraping text from the separate page of each incident containing more detai
 - [x] Fix text formatting because the police doesn't uphold any kind of standard...
 - [x] The API provided by the police is literally broken when a title (summary key in the API) is longer than 110 characters. I fixed it by substringing the important parts and adding the full summary text on button.
 
-Styling was done with tailwind and a daisyUI theme, some colors may be changed soon.
+Built with <u>**next.js**</u> and <u>**TypeScript**</u> using its serverless functionality.
+<br>
+Styling was done with <u>**tailwind**</u> and a <u>**daisyUI**</u> theme, some colors may be changed soon.
 <br><br>
 [You can preview the app here.](https://enklapolisrapporter.vercel.app/)
 <br><br>
