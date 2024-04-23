@@ -218,7 +218,7 @@ export default function Home() {
       let nameOnlySubstring = currentName.slice(
         currentName.indexOf(", ")+1, currentName.lastIndexOf(", "));
 
-      console.log(nameOnlySubstring);
+      //console.log(nameOnlySubstring);
       return nameOnlySubstring;
       }
     return currentText;
@@ -240,7 +240,7 @@ export default function Home() {
         <div id="full-screen-info-container" className="fixed w-screen h-screen top-0 left-0 flex z-10 bg-black bg-opacity-50 
         animate-fadeOut" onClick={(e) => handleWhenToggleIsTrue(e)}>
           <div className="relative m-auto mt-20 w-3/4 lg:w-1/4 border-4 border-neutral-content 
-          bg-primary text-white z-0 p-10 rounded-3xl shadow-inner"
+          bg-primary text-white z-0 p-5 lg:p-10 rounded-3xl shadow-inner"
           onClick={(e) => e.stopPropagation()}>
             <InfoText />
           </div> 
