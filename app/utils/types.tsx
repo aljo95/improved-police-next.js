@@ -16,12 +16,12 @@ export const typesOfIncidents: TypeCollection = {
         },
         {
             typeOfCrime: "Misshandel-Bråk-Misshandel, grov",
-            valueString: "Bråk, Misshandel",
+            valueString: "Misshandel",
         },
         {
             typeOfCrime: `Inbrott-Inbrott, försök-Rån-Rån väpnat-Rån övrigt-Rån, försök-
             Stöld-Stöld, försök-Stöld, ringa-Stöld/inbrott-Larm inbrott`,
-            valueString: "Inbrott, Stöld, Rån",
+            valueString: "Stöld, Rån,
         },
         {
             typeOfCrime: "Mord/dråp-Mord/dråp, försök",
@@ -30,11 +30,11 @@ export const typesOfIncidents: TypeCollection = {
         {
             typeOfCrime: `Trafikbrott-Trafikhinder-Trafikkontroll-Trafikolycka-Trafikolycka
             , personskada-Trafikolycka, singel-Trafikolycka, smitning från-Trafikolycka, vilt-Rattfylleri`,
-            valueString: "Trafikbrott och olyckor",
+            valueString: "Trafik",
         },
         {
             typeOfCrime: "Larm överfall-Våldtäkt-Våldtäkt, försök",
-            valueString: "Våldtäkt, Överfall"
+            valueString: "Överfall"
         },
         {
             typeOfCrime: `Sammanfattning dag-Sammanfattning dygn-Sammanfattning eftermiddag
