@@ -21,15 +21,15 @@ export const typesOfIncidents: TypeCollection = {
         {
             typeOfCrime: `Inbrott-Inbrott, försök-Rån-Rån väpnat-Rån övrigt-Rån, försök-
             Stöld-Stöld, försök-Stöld, ringa-Stöld/inbrott-Larm inbrott`,
-            valueString: "Stöld, Rån,
+            valueString: "Stöld, Rån",
         },
         {
             typeOfCrime: "Mord/dråp-Mord/dråp, försök",
             valueString: "Mord"
         },
         {
-            typeOfCrime: `Trafikbrott-Trafikhinder-Trafikkontroll-Trafikolycka-Trafikolycka
-            , personskada-Trafikolycka, singel-Trafikolycka, smitning från-Trafikolycka, vilt-Rattfylleri`,
+            typeOfCrime: `Trafikbrott-Trafikhinder-Trafikkontroll-Trafikolycka-Trafikolycka, personskada
+            -Trafikolycka, singel-Trafikolycka, smitning från-Trafikolycka, vilt-Rattfylleri`,
             valueString: "Trafik",
         },
         {
